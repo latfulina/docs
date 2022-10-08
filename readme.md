@@ -1,6 +1,6 @@
 # Документация
 
-- Linux
+- [Linux](linux.md)
 - Git 
 - Markdown
 - Слепая печать 
