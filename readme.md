@@ -1,9 +1,9 @@
 # Документация
 
 - [Linux](linux.md)
-- Git 
-- Markdown
-- Слепая печать 
+- Git
+- [Markdown](Markdown.md)
+- Слепая печать
 - English
 - SQL
 - Python
