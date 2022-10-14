@@ -7,3 +7,5 @@
 - SQL
 - Python
 - Математика
+- [Терминология](terminology.md)
+- [Перевод технических терминов](translations.md)
