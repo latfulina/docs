@@ -12,6 +12,7 @@
   - [Выход из цикла](#выход-из-цикла)
   - [Операторы сравнения](#операторы-сравнения)
   - [Создание сайта на python](#создание-сайта-на-python)
+    - [Миграции](#миграции)
 
 ## Функции
 
@@ -190,21 +191,33 @@ for переменная in набор_значений:
 
 ## Создание сайта на python
 
-Для создания виртуальной среды
-
-Для активации виртуальной среды
+Для создания и активации виртуальной среды:
 
  ```text
 python3 -m venv venv
 source venv/bin/activate
 ```
 
- Пример jinja  для шаблонизации
- 
-{% extends 'main/layout.html'%}
-{% block title %}Главная страница{%endblock%}
+Для создания проекта используют команду:
 
-{% block content %}
-<h1> Главная страница</h1>
-<p> jghfdsdgh</p>
-{%endblock%}
+`django-admin startproject and name`
+
+Для добавления нового приложения в проект используют команду:
+
+`python3 manage.py startapp and name`
+
+После добавления нужно зарегистрировать приложение в settings.py в разделе INSTALLED_APPS
+
+Запустить сервис с помощью команды: `python3 manage.py runserver`
+
+Создание суперпользователя с помощью команды: `python3 manage.py createsuperuser`
+
+Для создания новой БД используем команду: `createbd and name`
+
+Чтобы удалить БД используем команду: `dropbd and name`
+
+### Миграции
+
+`python3 manage.py makemigrations`
+
+`python3 manage.py migrate`
