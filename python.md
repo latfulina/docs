@@ -11,8 +11,14 @@
   - [Циклы](#циклы)
   - [Выход из цикла](#выход-из-цикла)
   - [Операторы сравнения](#операторы-сравнения)
+  - [Методы сортировки](#методы-сортировки)
+    - [Пузырьковая сортировка](#пузырьковая-сортировка)
+    - [Сортировка вставками](#сортировка-вставками)
+    - [Сортировка выборкой](#сортировка-выборкой)
+    - [Сортировка слиянием](#сортировка-слиянием)
   - [Создание сайта на python](#создание-сайта-на-python)
     - [Миграции](#миграции)
+  - [Работа с базами данных](#работа-с-базами-данных)
 
 ## Функции
 
@@ -189,9 +195,93 @@ for переменная in набор_значений:
 
 - оператор `>=`, «больше или равно»
 
+## Методы сортировки
+
+### Пузырьковая сортировка
+
+```text
+def bubble(list_nums):  
+    swap_bool = True
+    while swap_bool:
+        swap_bool = False
+        for i in range(len(list_nums) - 1):
+            if list_nums[i] > list_nums[i + 1]:
+                list_nums[i], list_nums[i + 1] = list_nums[i + 1],    
+                list_nums[i]
+                swap_bool = True
+nums = [54, 43, 3, 11, 0]   
+bubble(nums)
+print(nums)
+```
+
+### Сортировка вставками
+
+```text
+def insertion(list_nums):  
+    for i in range(1, len(list_nums)):
+        item = list_nums[i]
+        i2 = i - 1
+        while i2 >= 0 and list_nums[i2] > item:
+            list_nums[i2 + 1] = list_nums[i2]
+            i2 -= 1
+        list_nums[i2 + 1] = item
+nums = [54, 43, 3, 11, 0]  
+insertion(nums) 
+print(nums) 
+```
+
+### Сортировка выборкой
+
+```text
+def selection(sort_nums):  
+    for i in range(len(sort_nums)):
+        index = i
+        for j in range(i + 1, len(sort_nums)):
+            if sort_nums[j] < sort_nums[index]:
+               index = j
+        sort_nums[i], sort_nums[index] = sort_nums[index], sort_nums[i]
+nums = [54, 43, 3, 11, 0]  
+selection(nums)
+print(nums) # Выведет [0, 3, 11, 43, 54]
+```
+
+### Сортировка слиянием
+
+```text
+def mergeSort(sort_nums):
+    if len(sort_nums)>1:
+        mid = len(sort_nums)//2
+        lefthalf = sort_nums[:mid]
+        righthalf = sort_nums[mid:]
+        mergeSort(lefthalf)
+        mergeSort(righthalf)
+        i=0
+        j=0
+        k=0
+        while i<len(lefthalf) and j<len(righthalf):
+            if lefthalf[i]<righthalf[j]:
+                sort_nums[k]=lefthalf[i]
+                i=i+1
+            else:
+                sort_nums[k]=righthalf[j]
+                j=j+1
+            k=k+1
+        while i<len(lefthalf):
+            sort_nums[k]=lefthalf[i]
+            i=i+1
+            k=k+1
+        while j<len(righthalf):
+            sort_nums[k]=righthalf[j]
+            j=j+1
+            k=k+1
+nums = [54, 43, 3, 11, 0] 
+mergeSort(nums)
+print(nums)
+```
+
 ## Создание сайта на python
 
-Для создания и активации виртуальной среды:
+Создание и активация виртуальной среды:
 
  ```text
 python3 -m venv venv
@@ -221,3 +311,36 @@ source venv/bin/activate
 `python3 manage.py makemigrations`
 
 `python3 manage.py migrate`
+
+## Работа с базами данных
+
+`Name.objects.all()` — для получения всех обектов в Name
+
+Для вывода записей из базы данных по названию title.
+ name = Articles.objects.order_by('title') — для сортировки обьектов
+
+```text
+def __str__(self):
+return self.title
+```
+
+Для настройки работы с базами данных необходимо зайти на сайт "Aдминистирование Django"
+
+`{% csrf_token %}` для безопасности добавляется в проект.
+
+`CharField` не более 250 символов в строке
+
+Для того, чтобы зарегистрировать таблицу нужно зайти в admin.py 
+
+```text
+from .models import Record
+admin.site.register(Record)
+```
+
+Создает мини вкладку
+
+```text
+<details>
+    <summary> Как записаться на тренировку по баскетболу?</summary>
+    <p> Переходи на </p>
+</details>```
